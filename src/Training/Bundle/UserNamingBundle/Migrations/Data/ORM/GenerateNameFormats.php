@@ -2,11 +2,11 @@
 
 namespace Training\Bundle\UserNamingBundle\Migrations\Data\ORM;
 
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
 use Training\Bundle\UserNamingBundle\Entity\UserNamingType;
 use Training\Bundle\UserNamingBundle\Provider\UserFullNameProvider;
 
@@ -17,7 +17,7 @@ class GenerateNameFormats extends AbstractFixture implements DependentFixtureInt
     /**
      * {@inheritdoc}
      */
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [LoadUserNamingTypes::class];
     }
