@@ -15,6 +15,9 @@
     {{ parent() }}
 {% endblock pageHeader %}
 
+{% block stats %}
+{% endblock stats %}
+
 {% block content_data %}
     {% set generalIinformation %}
         <div class="widget-content">
@@ -24,7 +27,7 @@
                     {{ UI.renderProperty('training.usernaming.usernamingtype.format.label'|trans, entity.format) }}
 
                     {% set formattedNameExample %}
-                        {% include '@TrainingUserNaming/UserNaming/fullNameExample.html.twig' with {'format': entity.format} %}
+                        {% include '@TrainingUserNaming/UserNaming/fullNameExample.html.twig' with {'example': entity.example} %}
                     {% endset %}
                     {{ UI.renderHtmlProperty('training.usernaming.full_formatted_name_example'|trans, formattedNameExample) }}
                 </div>
@@ -43,14 +46,17 @@
             'subblocks': [
                 {'data' : [generalIinformation]}
             ]
-        },
-        {
+        }
+    ] %}
+
+    {% if is_granted('oro_user_user_view') %}
+        {% set dataBlocks = dataBlocks|merge([{
             'title': 'training.usernaming.sections.related_users'|trans,
             'subblocks': [
                 {'data' : [relatedUsers]}
             ]
-        }
-    ] %}
+        }] ) %}
+    {% endif %}
 
     {% set id = 'user-naming-type' %}
     {% set data = { 'dataBlocks': dataBlocks } %}
