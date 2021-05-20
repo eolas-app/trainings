@@ -5,6 +5,7 @@ services:
 
     Training\Bundle\UserNamingBundle\:
         resource: '../../*'
+        exclude: '../../{Entity,Migrations,Tests}'
 
     Training\Bundle\UserNamingBundle\Provider\EntityNameProviderDecorator:
         decorates: Oro\Bundle\LocaleBundle\Provider\EntityNameProvider
