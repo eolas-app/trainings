@@ -3,7 +3,6 @@
 namespace Training\Bundle\UserNamingBundle\EventListener;
 
 use Oro\Bundle\UIBundle\Event\BeforeListRenderEvent;
-use Oro\Bundle\UserBundle\Entity\User;
 
 class UserViewNamingListener
 {
@@ -12,7 +11,6 @@ class UserViewNamingListener
      */
     public function onUserView(BeforeListRenderEvent $event)
     {
-        /** @var User $user */
         $user = $event->getEntity();
         if (!$user) {
             return;
