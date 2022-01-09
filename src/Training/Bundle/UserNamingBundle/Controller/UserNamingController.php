@@ -20,4 +20,18 @@ class UserNamingController
             'entity_class' => UserNamingType::class,
         ];
     }
+
+    /**
+     * @Route("/view/{id}", name="training_user_naming_view", requirements={"id"="\d+"})
+     * @Template
+     *
+     * @param UserNamingType $type
+     * @return array
+     */
+    public function viewAction(UserNamingType $type): array
+    {
+        return [
+            'entity' => $type,
+        ];
+    }
 }
